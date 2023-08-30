@@ -8,9 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.rossato.couse.entities.Category;
 import com.rossato.couse.entities.Order;
 import com.rossato.couse.entities.User;
 import com.rossato.couse.entities.enums.OrderStatus;
+import com.rossato.couse.repositories.CategoryRepository;
 import com.rossato.couse.repositories.OrderRepository;
 import com.rossato.couse.repositories.UserRepository;
 
@@ -24,6 +26,9 @@ public class TestConfig implements CommandLineRunner {
   @Autowired
   private OrderRepository orderRepository;
 
+  @Autowired
+  private CategoryRepository categoryRepository;
+
   @Override
   public void run(String... args) throws Exception {
     // throw new UnsupportedOperationException("Unimplemented method 'run'");
@@ -34,6 +39,11 @@ public class TestConfig implements CommandLineRunner {
     Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.DELIVERED, u2);
     Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.DELIVERED, u1);
 
+    Category cat1 = new Category(null, "Electronics");
+    Category cat2 = new Category(null, "Books");
+    Category cat3 = new Category(null, "Computers");
+
+    categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
     userRepository.saveAll(Arrays.asList(u1, u2));
     orderRepository.saveAll(Arrays.asList(o1, o2, o3));
   }
