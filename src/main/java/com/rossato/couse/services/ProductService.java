@@ -5,20 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rossato.couse.entities.User;
-import com.rossato.couse.repositories.UserRepository;
+import com.rossato.couse.entities.Product;
+import com.rossato.couse.repositories.ProductRepository;
 
 @Service
-public class UserService {
+public class ProductService {
   
   @Autowired
-  private UserRepository repository;
+  private ProductRepository repository;
 
-  public List<User> findAll() {
+  public List<Product> findAll() {
     return repository.findAll();
   }
   
-  public User findById(Long id) {
+  public Product findById(Long id) {
     return repository.findById(id).get();
   }
 }
